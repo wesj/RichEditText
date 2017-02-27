@@ -61,7 +61,7 @@ public class TestImage extends StyleTest<ImageSpan> {
         assertEquals(true, verifyStyle(edit));
         testToggle(edit, 6, 8, 0, 1, 6, 7);
         assertEquals(true, verifyStyle(edit));
-        testToggle(edit, 2, 5, 0, 1, 2, 3, 4, 5);
+        testToggle(edit, 2, 5, 0, 1, 4, 5, 2, 3);
         assertEquals(true, verifyStyle(edit));
     }
 
@@ -144,6 +144,28 @@ public class TestImage extends StyleTest<ImageSpan> {
         edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_1));
         edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_1));
         verifySpans(edit, 5, 6);
+    }
+
+    @Override
+    @Test
+    public void testToggleMiddle() {
+        if (!looperPrepared) {
+            Looper.prepare();
+            looperPrepared = true;
+        }
+
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        RichEditText edit = new RichEditText(appContext);
+        edit.setText("Hello World!");
+
+        testToggle(edit, 0, 12, 0, 1);
+        assertEquals(true, verifyStyle(edit));
+
+        testToggle(edit, 1, null, 0, 1, 1, 2);
+        // assertEquals(false, verifyStyle(edit));
+        edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_1));
+        edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_1));
+        verifySpans(edit, 0, 1, 1, 2);
     }
 
     @Test

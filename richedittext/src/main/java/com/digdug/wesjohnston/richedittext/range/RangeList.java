@@ -1,11 +1,14 @@
 package com.digdug.wesjohnston.richedittext.range;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 public class RangeList implements Iterable<Range> {
+    private static final String LOGTAG = RangeList.class.getSimpleName();
     private List<Range> ranges = new ArrayList<>();
     private int start = Integer.MAX_VALUE;
     private int end = Integer.MIN_VALUE;
@@ -65,6 +68,7 @@ public class RangeList implements Iterable<Range> {
     }
 
     public void remove(Range s) {
+        Log.i(LOGTAG, "Removing " + s + " from " + ranges);
         for (Range r : ranges) {
             if (r.intersects(s)) {
                 boolean updateStart = false;
@@ -83,6 +87,7 @@ public class RangeList implements Iterable<Range> {
                         end = newRange.end;
                     }
                     Collections.sort(ranges);
+                    Log.i(LOGTAG, "Removed: " + ranges);
                 } else {
                     if (r.start == -1 && r.end == -1) {
                         ranges.remove(r);

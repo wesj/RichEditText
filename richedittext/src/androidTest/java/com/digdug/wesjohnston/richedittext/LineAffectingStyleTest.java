@@ -32,6 +32,28 @@ public abstract class LineAffectingStyleTest<T> extends StyleTest<T> {
 
     @Override
     @Test
+    public void testToggleMiddle() {
+        if (!looperPrepared) {
+            Looper.prepare();
+            looperPrepared = true;
+        }
+
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        RichEditText edit = new RichEditText(appContext);
+        edit.setText("Hello World!");
+
+        testToggle(edit, 0, 12, 0, 12);
+        assertEquals(true, verifyStyle(edit));
+
+        testToggle(edit, 5, null, 0, 12);
+        // assertEquals(false, verifyStyle(edit));
+        edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_1));
+        edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_1));
+        verifySpans(edit, 0, 13);
+    }
+
+    @Override
+    @Test
     public void testTwoAreas() {
         Context appContext = InstrumentationRegistry.getTargetContext();
         RichEditText edit = new RichEditText(appContext);

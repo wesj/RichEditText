@@ -82,8 +82,8 @@ public class Range implements Comparable<Range> {
     @Override
     public int compareTo(Range o) {
         if (start != o.start) {
-            return o.start = start;
+            return start - o.start;
         }
-        return o.end - end;
+        return end - o.end;
     }
 }
