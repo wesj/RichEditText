@@ -25,6 +25,7 @@ import com.digdug.wesjohnston.richedittext.generators.FontGenerator;
 import com.digdug.wesjohnston.richedittext.generators.ForegroundColorGenerator;
 import com.digdug.wesjohnston.richedittext.generators.ImageGenerator;
 import com.digdug.wesjohnston.richedittext.generators.QuoteGenerator;
+import com.digdug.wesjohnston.richedittext.generators.SizeGenerator;
 import com.digdug.wesjohnston.richedittext.generators.SpanGenerator;
 import com.digdug.wesjohnston.richedittext.generators.StrikethroughGenerator;
 import com.digdug.wesjohnston.richedittext.generators.StyleGenerator;
@@ -75,6 +76,17 @@ public class RichEditText extends EditText {
 
     public Layout.Alignment getAlignment() {
         AlignmentGenerator generator = new AlignmentGenerator(Layout.Alignment.ALIGN_NORMAL);
+        return generator.getCurrentValue(this);
+    }
+
+    public void setTextSize(int size) {
+        SizeGenerator generator = new SizeGenerator(size);
+        toggleStyle(generator, StyleMode.FORCE_SET);
+    }
+
+    @Override
+    public float getTextSize() {
+        SizeGenerator generator = new SizeGenerator(0);
         return generator.getCurrentValue(this);
     }
 
@@ -179,14 +191,6 @@ public class RichEditText extends EditText {
 
     public void toggleBold() {
         toggleStyle(boldGenerator, StyleMode.TOGGLE);
-    }
-
-    public void setBold() {
-        toggleStyle(boldGenerator, StyleMode.FORCE_SET);
-    }
-
-    public void clearBold() {
-        toggleStyle(boldGenerator, StyleMode.FORCE_CLEAR);
     }
 
     // ITALICS

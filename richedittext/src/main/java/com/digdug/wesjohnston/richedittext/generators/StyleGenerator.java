@@ -33,9 +33,6 @@ public class StyleGenerator implements SpanGenerator<StyleSpan, Boolean> {
     @Override
     public Boolean getCurrentValue(RichEditText edit) {
         Range selection = new Range(edit.getSelectionStart(), edit.getSelectionEnd());
-        if (selection.start == selection.end) {
-            selection.start--;
-        }
 
         Editable text = edit.getText();
         StyleSpan[] styles = text.getSpans(selection.start, selection.end, StyleSpan.class);
