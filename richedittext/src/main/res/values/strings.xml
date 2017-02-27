@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">RichEditText</string>
+    <string name="bold">Bold</string>
+    <string name="bg_color">Background</string>
+    <string name="fg_color">Color</string>
+    <string name="font">Font</string>
+    <string name="italic">Italics</string>
+    <string name="strikethrough">Strikethrough</string>
+    <string name="underline">Underline</string>
+    <string name="subscript">Subscript</string>
+    <string name="superscript">Superscript</string>
+    <string name="link">Link</string>
+    <string name="cut">CUt</string>
+    <string name="copy">Copy</string>
+    <string name="paste">Paste</string>
+    <string name="share">Share</string>
+    <string name="selectAll">Select All</string>
+    <string name="replace">Replace</string>
+    <string name="advanced">Advanced</string>
+    <string name="fromCamera">From Camera</string>
+    <string name="fromFile">From file</string>
+    <string name="selectImage">Select Image</string>
+    <string name="color_description">Color</string>
+    <string name="bullets">Bullets</string>
+    <string name="quote">Quote</string>
+    <string name="align_center">Align Center</string>
+    <string name="align_right">Align right</string>
+    <string name="align_left">Align Left</string>
+</resources>
