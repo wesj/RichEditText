@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @SuppressLint("SetTextI18n")
@@ -47,9 +48,9 @@ public abstract class StyleTest<T> {
         edit.setText("Hello World!");
 
         testToggle(edit, 0, 5, 0, 5);
-        assertEquals(true, verifyStyle(edit));
+        assertTrue(verifyStyle(edit));
         testToggle(edit, null, null);
-        assertEquals(false, verifyStyle(edit));
+        assertFalse(verifyStyle(edit));
     }
 
     @Test
@@ -59,9 +60,9 @@ public abstract class StyleTest<T> {
         edit.setText("Hello World!");
 
         testToggle(edit, 0, 5, 0, 5);
-        assertEquals(true, verifyStyle(edit));
+        assertTrue(verifyStyle(edit));
         testToggle(edit, 0, 12, 0, 12);
-        assertEquals(true, verifyStyle(edit));
+        assertTrue(verifyStyle(edit));
     }
 
     @Test
@@ -71,9 +72,9 @@ public abstract class StyleTest<T> {
         edit.setText("Hello World!");
 
         testToggle(edit, 6, 12, 6, 12);
-        assertEquals(true, verifyStyle(edit));
+        assertTrue(verifyStyle(edit));
         testToggle(edit, 0, 12, 0, 12);
-        assertEquals(true, verifyStyle(edit));
+        assertTrue(verifyStyle(edit));
     }
 
     @Test
@@ -83,11 +84,11 @@ public abstract class StyleTest<T> {
         edit.setText("Hello World!");
 
         testToggle(edit, 0, 4, 0, 4);
-        assertEquals(true, verifyStyle(edit));
+        assertTrue(verifyStyle(edit));
         testToggle(edit, 7, 12, 0, 4, 7, 12);
-        assertEquals(true, verifyStyle(edit));
+        assertTrue(verifyStyle(edit));
         testToggle(edit, 3, 8, 0, 12);
-        assertEquals(true, verifyStyle(edit));
+        assertTrue(verifyStyle(edit));
     }
 
     @Test
@@ -97,9 +98,9 @@ public abstract class StyleTest<T> {
         edit.setText("Hello World!");
 
         testToggle(edit, 0, 12, 0, 12);
-        assertEquals(true, verifyStyle(edit));
+        assertTrue(verifyStyle(edit));
         testToggle(edit, 0, 5, 5, 12);
-        assertEquals(false, verifyStyle(edit));
+        assertFalse(verifyStyle(edit));
     }
 
     @Test
@@ -109,9 +110,9 @@ public abstract class StyleTest<T> {
         edit.setText("Hello World!");
 
         testToggle(edit, 0, 12, 0, 12);
-        assertEquals(true, verifyStyle(edit));
+        assertTrue(verifyStyle(edit));
         testToggle(edit, 6, 12, 0, 6);
-        assertEquals(false, verifyStyle(edit));
+        assertFalse(verifyStyle(edit));
     }
 
     @Test
@@ -121,9 +122,9 @@ public abstract class StyleTest<T> {
         edit.setText("Hello World!");
 
         testToggle(edit, 0, 12, 0, 12);
-        assertEquals(true, verifyStyle(edit));
+        assertTrue(verifyStyle(edit));
         testToggle(edit, 3, 6, 0, 3, 6, 12);
-        assertEquals(false, verifyStyle(edit));
+        assertFalse(verifyStyle(edit));
     }
 
     static boolean looperPrepared = false;
@@ -142,13 +143,13 @@ public abstract class StyleTest<T> {
         edit.setSelection(5);
         toggleStyle(edit);
         verifySpans(edit, 5, 5);
-        assertEquals(true, verifyStyle(edit));
+        assertTrue(verifyStyle(edit));
         edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_1));
         edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_1));
         verifySpans(edit, 5, 6);
 
         toggleStyle(edit);
-        //assertEquals(false, verifyStyle(edit));
+        //assertFalse(verifyStyle(edit));
         //edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_2));
         //edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_2));
         verifySpans(edit, 5, 6);
@@ -182,7 +183,7 @@ public abstract class StyleTest<T> {
 
         testToggle(edit, 5, 7, 5, 7);
         edit.setSelection(5);
-        //assertEquals(true, verifyStyle(edit));
+        //assertTrue(verifyStyle(edit));
         edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_1));
         edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_1));
         //assertEquals("", Html.toHtml(edit.getText()));
@@ -201,10 +202,10 @@ public abstract class StyleTest<T> {
         edit.setText("Hello World!");
 
         testToggle(edit, 0, 12, 0, 12);
-        assertEquals(true, verifyStyle(edit));
+        assertTrue(verifyStyle(edit));
 
         testToggle(edit, 5, null, 0, 5, 5, 12);
-        // assertEquals(false, verifyStyle(edit));
+        // assertFalse(verifyStyle(edit));
         edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_1));
         edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_1));
         verifySpans(edit, 0, 5, 6, 13);
@@ -223,7 +224,7 @@ public abstract class StyleTest<T> {
 
         testToggle(edit, 5, 7, 5, 7);
         edit.setSelection(7);
-        assertEquals(true, verifyStyle(edit));
+        assertTrue(verifyStyle(edit));
         edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_1));
         edit.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_1));
         verifySpans(edit, 5, 8);
