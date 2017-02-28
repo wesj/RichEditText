@@ -137,6 +137,7 @@ public class RichEditText extends EditText {
         //if (selection.start == selection.end && ranges.size() > 0) {
         //    text.setSpan(startSpan, ranges.getStart(), ranges.getEnd(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         //} else
+
         if (ranges.contains(selection) && mode != StyleMode.FORCE_SET) {
             ranges.remove(selection);
             int i = 0;
@@ -155,12 +156,12 @@ public class RichEditText extends EditText {
                 i++;
                 startSpan = generator.getSpan(getContext());
             }
-        } else if (startSpan != null && ranges.size() > 0) {
+        } else if (startSpan != null && ranges.size() > 0 && mode != StyleMode.FORCE_CLEAR) {
             text.setSpan(startSpan,
                     Math.min(ranges.getStart(), selection.start),
                     Math.max(ranges.getEnd(), selection.end),
                     Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-        } else {
+        } else if(mode != StyleMode.FORCE_CLEAR) {
             Object style = generator.getSpan(getContext());
             text.setSpan(style, selection.start, selection.end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         }
