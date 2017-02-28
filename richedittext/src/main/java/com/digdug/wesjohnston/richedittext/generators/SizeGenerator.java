@@ -7,9 +7,6 @@ import android.text.style.TypefaceSpan;
 
 import com.digdug.wesjohnston.richedittext.RichEditText;
 
-/**
- * Created by Wes Johnston on 2/28/2017.
- */
 public class SizeGenerator implements SpanGenerator<AbsoluteSizeSpan,Integer> {
     private int size;
     public SizeGenerator(int size) {

@@ -33,6 +33,12 @@ public abstract class StyleTest<T> {
         verifySpans(edit, spans);
     }
 
+    protected abstract void verifyStyleType(T style);
+
+    protected abstract Class<T> getClassType();
+
+    protected abstract void toggleStyle(RichEditText edit);
+
     // Test that toggling a style works
     @Test
     public void testStyle() {
@@ -45,12 +51,6 @@ public abstract class StyleTest<T> {
         testToggle(edit, null, null);
         assertEquals(false, verifyStyle(edit));
     }
-
-    protected abstract void verifyStyleType(T style);
-
-    protected abstract Class<T> getClassType();
-
-    protected abstract void toggleStyle(RichEditText edit);
 
     @Test
     public void testExtendStart() {
