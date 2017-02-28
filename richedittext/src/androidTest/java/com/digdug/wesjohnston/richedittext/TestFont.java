@@ -26,6 +26,10 @@ public class TestFont extends StyleTest<TypefaceSpan> {
 
     @Override
     protected void toggleStyle(RichEditText edit) {
-        edit.setFont("serif");
+        if (verifyStyle(edit)) {
+            edit.clearFont();
+        } else {
+            edit.setFont("serif");
+        }
     }
 }

@@ -7,9 +7,12 @@ import android.graphics.Typeface;
 import android.os.Parcel;
 import android.text.Editable;
 import android.text.TextPaint;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.TypefaceSpan;
 
 import com.digdug.wesjohnston.richedittext.RichEditText;
+import com.digdug.wesjohnston.richedittext.range.Range;
+import com.digdug.wesjohnston.richedittext.range.RangeList;
 
 public class FontGenerator implements SpanGenerator<TypefaceSpan, String> {
 
@@ -27,6 +30,9 @@ public class FontGenerator implements SpanGenerator<TypefaceSpan, String> {
 
     @Override
     public boolean isSpan(TypefaceSpan other) {
+        if (family == null) {
+            return true;
+        }
         return other.getFamily().equals(family);
     }
 
@@ -77,18 +83,38 @@ public class FontGenerator implements SpanGenerator<TypefaceSpan, String> {
 
     @Override
     public TypefaceSpan getSpan(Context context) {
+        if (family == null) {
+            return new TypefaceSpan("");
+        }
+
         if (family.startsWith("/")) {
             return new FontSpan(family);
         }
         return new TypefaceSpan(family);
     }
 
+    @Override
     public String getCurrentValue(RichEditText edit) {
         Editable text = edit.getText();
-        TypefaceSpan[] spansFound = text.getSpans(edit.getSelectionStart(), edit.getSelectionEnd(), TypefaceSpan.class);
-        if (spansFound.length == 1) {
+        Range selection = new Range(edit.getSelectionStart(), edit.getSelectionEnd());
+        TypefaceSpan[] spansFound = text.getSpans(selection.start, selection.end, TypefaceSpan.class);
+
+        String family = null;
+        RangeList list = new RangeList();
+        for (TypefaceSpan span : spansFound) {
+            if (family == null) {
+                family = span.getFamily();
+            }
+
+            if (span.getFamily().equals(family)) {
+                list.addRange(new Range(text.getSpanStart(span), text.getSpanEnd(span)));
+            }
+        }
+
+        if (list.contains(selection)) {
             return spansFound[0].getFamily();
         }
+
         return null;
     }
 }

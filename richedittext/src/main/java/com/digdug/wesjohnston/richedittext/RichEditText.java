@@ -262,6 +262,11 @@ public class RichEditText extends EditText {
         toggleStyle(generator, StyleMode.FORCE_SET);
     }
 
+    public void clearFont() {
+        SpanGenerator generator = new FontGenerator(null);
+        toggleStyle(generator, StyleMode.FORCE_CLEAR);
+    }
+
     // Strikethrough
     public void toggleStrikethrough() {
         toggleStyle(strikethroughGenerator, StyleMode.TOGGLE);
