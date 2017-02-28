@@ -131,7 +131,7 @@ public class RichEditText extends EditText {
         //if (selection.start == selection.end && ranges.size() > 0) {
         //    text.setSpan(startSpan, ranges.getStart(), ranges.getEnd(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         //} else
-        if (ranges.contains(selection)) {
+        if (ranges.contains(selection) && mode != StyleMode.FORCE_SET) {
             ranges.remove(selection);
             int i = 0;
             for (Range r : ranges) {
