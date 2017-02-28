@@ -354,6 +354,11 @@ public class RichEditText extends EditText {
         toggleStyle(generator, StyleMode.FORCE_SET);
     }
 
+    public void clearUrl() {
+        URLGenerator generator = new URLGenerator(null);
+        toggleStyle(generator, StyleMode.FORCE_CLEAR);
+    }
+
     // Quotes
     public void toggleQuotes() {
         QuoteGenerator generator = new QuoteGenerator();

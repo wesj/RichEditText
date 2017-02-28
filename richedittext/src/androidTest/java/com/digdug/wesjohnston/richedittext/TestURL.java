@@ -37,6 +37,10 @@ public class TestURL extends StyleTest<URLSpan> {
 
     @Override
     protected void toggleStyle(RichEditText edit) {
-        edit.setUrl(url);
+        if (edit.getUrl() != null) {
+            edit.clearUrl();
+        } else {
+            edit.setUrl(url);
+        }
     }
 }
