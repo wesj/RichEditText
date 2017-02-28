@@ -101,6 +101,11 @@ public class RichEditText extends EditText {
         return generator.getCurrentValue(this);
     }
 
+    public int getTextAppearance() {
+        TextAppearanceGenerator generator = new TextAppearanceGenerator(getContext(), -1);
+        return generator.getCurrentValue(this);
+    }
+
     private enum StyleMode {
         FORCE_SET,
         FORCE_CLEAR,
@@ -249,6 +254,11 @@ public class RichEditText extends EditText {
     public void setTextAppearance(int textAppearance) {
         SpanGenerator generator = new TextAppearanceGenerator(getContext(), textAppearance);
         toggleStyle(generator, StyleMode.FORCE_SET);
+    }
+
+    public void clearTextAppearance() {
+        TextAppearanceGenerator generator = new TextAppearanceGenerator(getContext(), -1);
+        toggleStyle(generator, StyleMode.FORCE_CLEAR);
     }
 
     // Font
