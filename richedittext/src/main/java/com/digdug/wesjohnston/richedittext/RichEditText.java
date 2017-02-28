@@ -328,6 +328,11 @@ public class RichEditText extends EditText {
         toggleStyle(generator, StyleMode.FORCE_SET);
     }
 
+    public void clearForegroundColor() {
+        SpanGenerator generator = new ForegroundColorGenerator(-1);
+        toggleStyle(generator, StyleMode.FORCE_CLEAR);
+    }
+
     // URL
     public URL getUrl() {
         URLGenerator generator = new URLGenerator(null);

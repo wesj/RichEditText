@@ -6,6 +6,7 @@ import android.text.style.ForegroundColorSpan;
 import org.junit.runner.RunWith;
 
 import static android.graphics.Color.GREEN;
+import static junit.framework.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
@@ -27,6 +28,10 @@ public class TestForegroundColor extends StyleTest<ForegroundColorSpan> {
 
     @Override
     protected void toggleStyle(RichEditText edit) {
-        edit.setForegroundColor(GREEN);
+        if (verifyStyle(edit)) {
+            edit.clearForegroundColor();
+        } else {
+            edit.setForegroundColor(GREEN);
+        }
     }
 }
