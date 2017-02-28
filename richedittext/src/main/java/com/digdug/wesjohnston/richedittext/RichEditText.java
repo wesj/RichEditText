@@ -2,6 +2,7 @@ package com.digdug.wesjohnston.richedittext;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -304,6 +305,11 @@ public class RichEditText extends EditText {
     public void setBackgroundColor(int color) {
         SpanGenerator generator = new BackgroundColorGenerator(color);
         toggleStyle(generator, StyleMode.FORCE_SET);
+    }
+
+    public void removeBackgroundColor() {
+        SpanGenerator generator = new BackgroundColorGenerator(-1);
+        toggleStyle(generator, StyleMode.FORCE_CLEAR);
     }
 
     // Foreground color

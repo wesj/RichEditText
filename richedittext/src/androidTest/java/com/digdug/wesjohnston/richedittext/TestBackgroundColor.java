@@ -27,6 +27,10 @@ public class TestBackgroundColor extends StyleTest<BackgroundColorSpan> {
 
     @Override
     protected void toggleStyle(RichEditText edit) {
-        edit.setBackgroundColor(RED);
+        if (verifyStyle(edit)) {
+            edit.removeBackgroundColor();
+        } else {
+            edit.setBackgroundColor(RED);
+        }
     }
 }
